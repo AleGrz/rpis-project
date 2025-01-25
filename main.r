@@ -8,7 +8,7 @@ prs <- function(f, point_count, bounds) {
 
   for (i in 1:point_count) {
 
-    value <- f(runif(1, min = bounds[i][1], max = bounds[i][2]))
+    value <- f(sapply(bounds, function(b) runif(1, b[1], b[2])))
     
     if (value < min_value) {
       min_value <- value
@@ -18,32 +18,29 @@ prs <- function(f, point_count, bounds) {
   return(min_value)
 }
 
-ms <- function(f, point_count, left_bound, right_bound) {
+ms <- function(f, point_count, bounds) {
   
   min_value <- Inf
-  min_point <- NULL
   total_calls <- 0
 
   for (i in 1:point_count) {
-    start_point <- sapply(bounds, function(b) runif(1, min = left_bound, max = right_bound))
 
     result <- optim(
       par = start_point, 
       fn = f, 
       method = "L-BFGS-B",
-      lower = sapply(bounds, function(b) left_bound),
-      upper = sapply(bounds, function(b) right_bound)
+      lower = sapply(bounds, function(b) b[1]),
+      upper = sapply(bounds, function(b) b[2])
     )
 
     total_calls <- total_calls + result$counts["function"]
 
     if (result$value < min_value) {
       min_value <- result$value
-      min_point <- result$par
     }
   }
 
-  return(list(value = min_value, point = min_point, calls = total_calls))
+  return(list(value = min_value, calls = total_calls))
 }
 
 
@@ -51,8 +48,11 @@ compare_prs_ms <- function(f, bounds) {
   print('MS')
   ms_res <- replicate(70, ms(f, 100, bounds))
   
+  value <- mean(sapply(ms_res, function(x) x["value"]))
+  budget <- mean(sapply(ms_res, function(x) x["calls"]))
+  
   print('PRS')
-  prs_res <- replicate(70, prs())
+  prs_res <- replicate(70, prs(f, budget, bounds))
   
 }
 
