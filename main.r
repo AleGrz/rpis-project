@@ -17,3 +17,19 @@ prs <- function(f, point_count, bounds) {
   
   return(min_value)
 }
+
+
+get_alpine01_bounds <- function(dim) { 
+  return(rep(c(0, 10), dim))
+}
+
+get_rosenbrock_bounds <- function(dim) {
+  return(rep(c(-5,10)), dim)
+}
+
+
+dimensions = c(2,10,20)
+
+for (dim in dimensions) {
+  
+}
