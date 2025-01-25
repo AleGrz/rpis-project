@@ -18,6 +18,35 @@ prs <- function(f, point_count, bounds) {
   return(min_value)
 }
 
+ms <- function(f, point_count, left_bound, right_bound) {
+  
+  min_value <- Inf
+  min_point <- NULL
+  total_calls <- 0
+
+  for (i in 1:point_count) {
+    start_point <- sapply(bounds, function(b) runif(1, min = left_bound, max = right_bound))
+
+    result <- optim(
+      par = start_point, 
+      fn = f, 
+      method = "L-BFGS-B",
+      lower = sapply(bounds, function(b) left_bound),
+      upper = sapply(bounds, function(b) right_bound)
+    )
+
+    total_calls <- total_calls + result$counts["function"]
+
+    if (result$value < min_value) {
+      min_value <- result$value
+      min_point <- result$par
+    }
+  }
+
+  return(list(value = min_value, point = min_point, calls = total_calls))
+}
+
+
 compare_prs_ms <- function(f, bounds) {
   print('MS')
   ms_res <- replicate(70, ms(f, 100, bounds))
