@@ -24,7 +24,8 @@ ms <- function(f, point_count, bounds) {
   total_calls <- 0
 
   for (i in 1:point_count) {
-
+    start_point <- sapply(bounds, function(b) runif(1, b[1], b[2]))
+    
     result <- optim(
       par = start_point, 
       fn = f, 
@@ -57,17 +58,22 @@ compare_prs_ms <- function(f, bounds) {
 }
 
 get_alpine01_bounds <- function(dim) { 
-  return(rep(c(0, 10), dim))
+  return(rep(c(0, 10), length.out = 2 * dim))
 }
 
 get_rosenbrock_bounds <- function(dim) {
-  return(rep(c(-5,10)), dim)
+  return(rep(c(-5, 10), length.out = 2 * dim))
 }
 
 
 dimensions = c(2,10,20)
 
 for (dim in dimensions) {
-  compare_prs_ms(makeRosenbrockFunction(dim), get_rosenbrock_bounds(dim))
+  res <- compare_prs_ms(makeRosenbrockFunction(dim), get_rosenbrock_bounds(dim))
+  write.csv(res["ms"], file="./res/rosenbrockms"+dim+".csv")
+  write.csv(res["prs"], file="./res/rosenbrockprs"+dim+".csv")
   compare_prs_ms(makeAlpine01Function(dim), get_alpine01_bounds(dim))
+  write.csv(res["ms"], file="./res/alpinems"+dim+".csv")
+  write.csv(res["prs"], file="./res/alpineprs"+dim+".csv")
 }
+
