@@ -8,7 +8,8 @@ prs <- function(f, point_count, bounds) {
 
   for (i in 1:point_count) {
 
-    value <- f(sapply(bounds, function(b) runif(1, b[1], b[2])))
+    point <- sapply(seq(1, length(bounds), by = 2), function(i) runif(1, bounds[i], bounds[i + 1]))
+    value <- f(point)
     
     if (value < min_value) {
       min_value <- value
@@ -41,8 +42,9 @@ ms <- function(f, point_count, bounds) {
 compare_prs_ms <- function(f, bounds) {
   print('MS')
   ms_res <- replicate(70, ms(f, 100, bounds), simplify = FALSE)
+  # print(ms_res)
   
-  value <- mean(sapply(ms_res, function(x) x$value))
+  value <- sapply(ms_res, function(x) x$value)
   budget <- mean(sapply(ms_res, function(x) x$calls))
 
   print(value)
@@ -50,6 +52,9 @@ compare_prs_ms <- function(f, bounds) {
   
   print('PRS')
   prs_res <- replicate(70, prs(f, budget, bounds))
+  # print(prs_res)
+
+  return (list(value, prs_res))
   
 }
 
@@ -66,10 +71,10 @@ dimensions = c(2,10,20)
 
 for (dim in dimensions) {
   res <- compare_prs_ms(makeRosenbrockFunction(dim), get_rosenbrock_bounds(dim))
-  write.csv(res["ms"], file="./res/rosenbrockms"+dim+".csv")
-  write.csv(res["prs"], file="./res/rosenbrockprs"+dim+".csv")
+  write.csv(res[1], file=paste0("./res/rosenbrockms", dim, ".csv"), row.names = FALSE, sep = ";")
+  write.csv(res[2], file=paste0("./res/rosenbrockprs", dim, ".csv"), row.names = FALSE, sep = ";")
   compare_prs_ms(makeAlpine01Function(dim), get_alpine01_bounds(dim))
-  write.csv(res["ms"], file="./res/alpinems"+dim+".csv")
-  write.csv(res["prs"], file="./res/alpineprs"+dim+".csv")
+  write.csv(res[1], file=paste0("./res/alpine01ms", dim, ".csv"), row.names = FALSE, sep = ";")
+  write.csv(res[2], file=paste0("./res/alpine01prs", dim, ".csv"), row.names = FALSE, sep = ";")
 }
 
