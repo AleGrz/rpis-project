@@ -3,20 +3,19 @@ title: "Projekt zaliczeniowy"
 output: pdf_document
 ---
 
-```
-ams2 <- as.vector(read.csv("./data/alpinems2.csv"))$x
-ams10 <- as.vector(read.csv("./data/alpinems10.csv"))$x
-ams20 <- as.vector(read.csv("./data/alpinems20.csv"))$x
-aprs2 <- as.vector(read.csv("./data/alpineprs2.csv"))$x
-aprs10 <- as.vector(read.csv("./data/alpineprs10.csv"))$x
-aprs20 <- as.vector(read.csv("./data/alpineprs20.csv"))$x
-pms2 <- as.vector(read.csv("./data/rosenbrockms2.csv"))$x
-pms10 <- as.vector(read.csv("./data/rosenbrockms10.csv"))$x
-pms20 <- as.vector(read.csv("./data/rosenbrockms20.csv"))$x
-pprs2 <- as.vector(read.csv("./data/rosenbrockprs2.csv"))$x
-pprs10 <- as.vector(read.csv("./data/rosenbrockprs10.csv"))$x
-pprs20 <- as.vector(read.csv("./data/rosenbrockprs20.csv"))$x
-
+```{r echo=FALSE}
+ams2 <- read.csv("./res/alpine01ms2.csv")[, 1]
+ams10 <- read.csv("./res/alpine01ms10.csv")[, 1]
+ams20 <- read.csv("./res/alpine01ms20.csv")[, 1]
+aprs2 <- read.csv("./res/alpine01prs2.csv")[, 1]
+aprs10 <- read.csv("./res/alpine01prs10.csv")[, 1]
+aprs20 <- read.csv("./res/alpine01prs20.csv")[, 1]
+pms2 <- read.csv("./res/rosenbrockms2.csv")[, 1]
+pms10 <- read.csv("./res/rosenbrockms10.csv")[, 1]
+pms20 <- read.csv("./res/rosenbrockms20.csv")[, 1]
+pprs2 <- read.csv("./res/rosenbrockprs2.csv")[, 1]
+pprs10 <- read.csv("./res/rosenbrockprs10.csv")[, 1]
+pprs20 <- read.csv("./res/rosenbrockprs20.csv")[, 1]
 ```
 
 #Projekt zaliczeniowy
@@ -24,21 +23,6 @@ Algorytmy: PRS, MS
 Funkcje: Alpine01, Rosenbrock
 
 #Wyniki
-
-```{r echo=FALSE}
-ams2 <- as.vector(read.csv("./data/alpinems2.csv"))$x
-ams10 <- as.vector(read.csv("./data/alpinems10.csv"))$x
-ams20 <- as.vector(read.csv("./data/alpinems20.csv"))$x
-aprs2 <- as.vector(read.csv("./data/alpineprs2.csv"))$x
-aprs10 <- as.vector(read.csv("./data/alpineprs10.csv"))$x
-aprs20 <- as.vector(read.csv("./data/alpineprs20.csv"))$x
-pms2 <- as.vector(read.csv("./data/rosenbrockms2.csv"))$x
-pms10 <- as.vector(read.csv("./data/rosenbrockms10.csv"))$x
-pms20 <- as.vector(read.csv("./data/rosenbrockms20.csv"))$x
-pprs2 <- as.vector(read.csv("./data/rosenbrockprs2.csv"))$x
-pprs10 <- as.vector(read.csv("./data/rosenbrockprs10.csv"))$x
-pprs20 <- as.vector(read.csv("./data/rosenbrockprs20.csv"))$x
-```
 
 ## Funkcja Alpine, 2D
 ### MS
@@ -60,14 +44,14 @@ pprs20 <- as.vector(read.csv("./data/rosenbrockprs20.csv"))$x
 ```{r echo=FALSE}
 hist(ams2, main="Funkcja Alpine 2D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,70), xlim = c(0,12)
+     xlim = c(0,11e-7)
      )
 ```
 
 ```{r echo=FALSE}
 hist(aprs2, main="Funkcja Alpine 2D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,40), xlim = c(0,8)
+     xlim = c(0,0.06)
      )
 ```
 
@@ -91,14 +75,14 @@ hist(aprs2, main="Funkcja Alpine 2D, PRS",
 ```{r echo=FALSE}
 hist(ams10, main="Funkcja Alpine 10D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,50), xlim = c(14,20)
+     ylim = c(0,20)
      )
 ```
 
 ```{r echo=FALSE}
 hist(aprs10, main="Funkcja Alpine 10D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,40), xlim = c(15,20)
+     ylim = c(0,30)
      )
 ```
 
@@ -122,14 +106,14 @@ hist(aprs10, main="Funkcja Alpine 10D, PRS",
 ```{r echo=FALSE}
 hist(ams20, main="Funkcja Alpine 20D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,40), xlim = c(17,20)
+     ylim = c(0,40), xlim = c(16e-6,14e-3)
      )
 ```
 
 ```{r echo=FALSE}
 hist(aprs20, main="Funkcja Alpine 20D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,50), xlim = c(18,21)
+     ylim = c(0,50), xlim = c(17,29)
      )
 ```
 
@@ -152,15 +136,13 @@ hist(aprs20, main="Funkcja Alpine 20D, PRS",
 
 ```{r echo=FALSE}
 hist(pms2, main="Funkcja Rosenbrocka 2D, MS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,70), xlim = c(0,1)
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE
      )
 ```
 
 ```{r echo=FALSE}
 hist(pprs2, main="Funkcja Rosenbrocka 2D, PRS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,40), xlim = c(0,4)
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE
      )
 ```
 
@@ -184,14 +166,12 @@ hist(pprs2, main="Funkcja Rosenbrocka 2D, PRS",
 ```{r echo=FALSE}
 hist(pms10, main="Funkcja Rosenbrocka 10D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,40), xlim = c(0,40)
      )
 ```
 
 ```{r echo=FALSE}
 hist(pprs10, main="Funkcja Rosenbrocka 10D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30), xlim = c(40,100)
      )
 ```
 
@@ -215,14 +195,12 @@ hist(pprs10, main="Funkcja Rosenbrocka 10D, PRS",
 ```{r echo=FALSE}
 hist(pms20, main="Funkcja Rosenbrocka 20D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30), xlim = c(30,100)
      )
 ```
 
 ```{r echo=FALSE}
 hist(pprs20, main="Funkcja Rosenbrocka 20D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,40), xlim = c(160,260)
      )
 ```
 
@@ -232,9 +210,7 @@ hist(pprs20, main="Funkcja Rosenbrocka 20D, PRS",
 boxplot(ams2, aprs2, main = "Funkcja Alpine, 2D", names = c("MS", "PRS"), ylab = "Wartość")
 boxplot(ams10, aprs10, main = "Funkcja Alpine, 10D", names = c("MS", "PRS"), ylab = "Wartość")
 boxplot(ams20, aprs20, main = "Funkcja Alpine, 20D", names = c("MS", "PRS"), ylab = "Wartość")
-boxplot
-
-(pms2, pprs2, main = "Funkcja Rosenbrocka, 2D", names = c("MS", "PRS"), ylab = "Wartość")
+boxplot(pms2, pprs2, main = "Funkcja Rosenbrocka, 2D", names = c("MS", "PRS"), ylab = "Wartość")
 boxplot(pms10, pprs10, main = "Funkcja Rosenbrocka, 10D", names = c("MS", "PRS"), ylab = "Wartość")
 boxplot(pms20, pprs20, main = "Funkcja Rosenbrocka, 20D", names = c("MS", "PRS"), ylab = "Wartość")
 ```
