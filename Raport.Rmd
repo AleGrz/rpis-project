@@ -81,21 +81,9 @@ hist(aprs10, main="Funkcja Alpine 10D, PRS",
 ```
 
 ## Funkcja Alpine, 20D
-### MS
-* Średnia: `r mean(ams20)`
-* Wartość najmniejsza: `r min(ams20)`
-* Wartość największa: `r max(ams20)`
-* Mediana: `r median(ams20)`
-* Dolny kwartyl: `r quantile(ams20, 0.25)`
-* Górny kwartyl: `r quantile(ams20, 0.75)`
-
-### PRS
-* Średnia: `r mean(aprs20)`
-* Wartość najmniejsza: `r min(aprs20)`
-* Wartość największa: `r max(aprs20)`
-* Mediana: `r median(aprs20)`
-* Dolny kwartyl: `r quantile(aprs20, 0.25)`
-* Górny kwartyl: `r quantile(aprs20, 0.75)`
+```{r echo=FALSE}
+createTable(ams20,aprs20)
+```
 
 ```{r echo=FALSE}
 hist(ams20, main="Funkcja Alpine 20D, MS", 
@@ -112,21 +100,9 @@ hist(aprs20, main="Funkcja Alpine 20D, PRS",
 ```
 
 ## Funkcja Rosenbrocka, 2D
-### MS
-* Średnia: `r mean(pms2)`
-* Wartość najmniejsza: `r min(pms2)`
-* Wartość największa: `r max(pms2)`
-* Mediana: `r median(pms2)`
-* Dolny kwartyl: `r quantile(pms2, 0.25)`
-* Górny kwartyl: `r quantile(pms2, 0.75)`
-
-### PRS
-* Średnia: `r mean(pprs2)`
-* Wartość najmniejsza: `r min(pprs2)`
-* Wartość największa: `r max(pprs2)`
-* Mediana: `r median(pprs2)`
-* Dolny kwartyl: `r quantile(pprs2, 0.25)`
-* Górny kwartyl: `r quantile(pprs2, 0.75)`
+```{r echo=FALSE}
+createTable(pms2,pprs2)
+```
 
 ```{r echo=FALSE}
 hist(pms2, main="Funkcja Rosenbrocka 2D, MS", 
@@ -141,21 +117,9 @@ hist(pprs2, main="Funkcja Rosenbrocka 2D, PRS",
 ```
 
 ## Funkcja Rosenbrocka, 10D
-### MS
-* Średnia: `r mean(pms10)`
-* Wartość najmniejsza: `r min(pms10)`
-* Wartość największa: `r max(pms10)`
-* Mediana: `r median(pms10)`
-* Dolny kwartyl: `r quantile(pms10, 0.25)`
-* Górny kwartyl: `r quantile(pms10, 0.75)`
-
-### PRS
-* Średnia: `r mean(pprs10)`
-* Wartość najmniejsza: `r min(pprs10)`
-* Wartość największa: `r max(pprs10)`
-* Mediana: `r median(pprs10)`
-* Dolny kwartyl: `r quantile(pprs10, 0.25)`
-* Górny kwartyl: `r quantile(pprs10, 0.75)`
+```{r echo=FALSE}
+createTable(pms10,pprs10)
+```
 
 ```{r echo=FALSE}
 hist(pms10, main="Funkcja Rosenbrocka 10D, MS", 
@@ -170,21 +134,9 @@ hist(pprs10, main="Funkcja Rosenbrocka 10D, PRS",
 ```
 
 ## Funkcja Rosenbrocka, 20D
-### MS
-* Średnia: `r mean(pms20)`
-* Wartość najmniejsza: `r min(pms20)`
-* Wartość największa: `r max(pms20)`
-* Mediana: `r median(pms20)`
-* Dolny kwartyl: `r quantile(pms20, 0.25)`
-* Górny kwartyl: `r quantile(pms20, 0.75)`
-
-### PRS
-* Średnia: `r mean(pprs20)`
-* Wartość najmniejsza: `r min(pprs20)`
-* Wartość największa: `r max(pprs20)`
-* Mediana: `r median(pprs20)`
-* Dolny kwartyl: `r quantile(pprs20, 0.25)`
-* Górny kwartyl: `r quantile(pprs20, 0.75)`
+```{r echo=FALSE}
+createTable(pms20,pprs20)
+```
 
 ```{r echo=FALSE}
 hist(pms20, main="Funkcja Rosenbrocka 20D, MS", 
@@ -197,20 +149,6 @@ hist(pprs20, main="Funkcja Rosenbrocka 20D, PRS",
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
      )
 ```
-
-## Wykresy pudełkowe
-
-```{r echo=FALSE}
-boxplot(ams2, aprs2, main = "Funkcja Alpine, 2D", names = c("MS", "PRS"), ylab = "Wartość")
-boxplot(ams10, aprs10, main = "Funkcja Alpine, 10D", names = c("MS", "PRS"), ylab = "Wartość")
-boxplot(ams20, aprs20, main = "Funkcja Alpine, 20D", names = c("MS", "PRS"), ylab = "Wartość")
-boxplot(pms2, pprs2, main = "Funkcja Rosenbrocka, 2D", names = c("MS", "PRS"), ylab = "Wartość")
-boxplot(pms10, pprs10, main = "Funkcja Rosenbrocka, 10D", names = c("MS", "PRS"), ylab = "Wartość")
-boxplot(pms20, pprs20, main = "Funkcja Rosenbrocka, 20D", names = c("MS", "PRS"), ylab = "Wartość")
-```
-
-
-
 
 ## Testy
 
