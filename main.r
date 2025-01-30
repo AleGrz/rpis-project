@@ -66,37 +66,8 @@ for (dim in dimensions) {
   write.csv(res[1], file=paste0("./res/rosenbrockms", dim, ".csv"), row.names = FALSE)
   write.csv(res[2], file=paste0("./res/rosenbrockprs", dim, ".csv"), row.names = FALSE)
 
-	res_prs = res[[2]]
-	res_ms = res[[1]]
-
-	# przedziały ufności
-	ci_prs <- c(mean(res_prs) - 1.96 * sd(res_prs) / sqrt(length(res_prs)), 
-              mean(res_prs) + 1.96 * sd(res_prs) / sqrt(length(res_prs)))
-  ci_ms <- c(mean(res_ms) - 1.96 * sd(res_ms) / sqrt(length(res_ms)), 
-             mean(res_ms) + 1.96 * sd(res_ms) / sqrt(length(res_ms)))
-	
-
-	# test
-	test_res <- z.test(res_prs, res_ms, sigma.x = sd(res_prs), sigma.y = sd(res_ms), conf.level = 0.95)
-  print("TEST:")
-  print(test_res)
-
   res <- compare_prs_ms(makeAlpine01Function(dim), get_alpine01_bounds(), dim)
   write.csv(res[1], file=paste0("./res/alpine01ms", dim, ".csv"), row.names = FALSE)
   write.csv(res[2], file=paste0("./res/alpine01prs", dim, ".csv"), row.names = FALSE)
-	res_prs = res[[2]]
-	res_ms = res[[1]]
 
-	# przedziały ufności
-	ci_prs <- c(mean(res_prs) - 1.96 * sd(res_prs) / sqrt(length(res_prs)), 
-              mean(res_prs) + 1.96 * sd(res_prs) / sqrt(length(res_prs)))
-  ci_ms <- c(mean(res_ms) - 1.96 * sd(res_ms) / sqrt(length(res_ms)), 
-             mean(res_ms) + 1.96 * sd(res_ms) / sqrt(length(res_ms)))
-
-
-	# test
-	test_res <- z.test(res_prs, res_ms, sigma.x = sd(res_prs), sigma.y = sd(res_ms), conf.level = 0.95)
-  print("TEST:")
-  print(test_res)
-	# na mocy testów odrzucamy hipotezę zerową - średnie wyniki prs i ms są wyraźnie różne
 }
