@@ -214,3 +214,40 @@ boxplot(pms2, pprs2, main = "Funkcja Rosenbrocka, 2D", names = c("MS", "PRS"), y
 boxplot(pms10, pprs10, main = "Funkcja Rosenbrocka, 10D", names = c("MS", "PRS"), ylab = "Wartość")
 boxplot(pms20, pprs20, main = "Funkcja Rosenbrocka, 20D", names = c("MS", "PRS"), ylab = "Wartość")
 ```
+
+
+
+
+## Testy
+
+
+### Funkcja Alpine01 dla 2 wymiarów:
+```{r echo=FALSE}
+t.test(x = aprs2, y = ams2, paired=TRUE)
+```
+
+### Funkcja Alpine01 dla 10 wymiarów:
+```{r echo=FALSE}
+t.test(x = aprs10, y = ams10, paired=TRUE)
+```
+
+### Funkcja Alpine01 dla 20 wymiarów:
+```{r echo=FALSE}
+t.test(x = aprs20, y = ams20, paired=TRUE)
+```
+
+### Funkcja Rosenbrocka dla 2 wymiarów:
+```{r echo=FALSE}
+t.test(x = pprs2, y = pms2, paired=TRUE)
+```
+
+### Funkcja Rosenbrocka dla 10 wymiarów:
+```{r echo=FALSE}
+t.test(x = pprs10, y = pms10, paired=TRUE)
+```
+
+### Funkcja Rosenbrocka dla 20 wymiarów:
+```{r echo=FALSE}
+t.test(x = pprs20, y = pms20, paired=TRUE)
+```
+
