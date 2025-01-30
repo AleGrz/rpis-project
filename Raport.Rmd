@@ -4,6 +4,7 @@ output: pdf_document
 ---
 
 ```{r echo=FALSE}
+library(knitr)
 ams2 <- read.csv("./res/alpine01ms2.csv")[, 1]
 ams10 <- read.csv("./res/alpine01ms10.csv")[, 1]
 ams20 <- read.csv("./res/alpine01ms20.csv")[, 1]
@@ -16,30 +17,34 @@ pms20 <- read.csv("./res/rosenbrockms20.csv")[, 1]
 pprs2 <- read.csv("./res/rosenbrockprs2.csv")[, 1]
 pprs10 <- read.csv("./res/rosenbrockprs10.csv")[, 1]
 pprs20 <- read.csv("./res/rosenbrockprs20.csv")[, 1]
+
+createTable <- function(f1,f2) {
+  frame <- data.frame(
+  Algorithm = c("MS", "PRS"),
+  Mean = c(mean(f1), mean(f2)),
+  Min = c(min(f1), min(f2)),
+  Max = c(max(f1), max(f2)),
+  Median = c(median(f1), median(f2)),
+  LowerQuartile = c(quantile(f1, 0.25), quantile(f2, 0.25)),
+  UpperQuartile = c(quantile(f1, 0.75), quantile(f2, 0.75))
+)
+
+kable(frame, col.names = c("Algorytm", "Średnia", "Min", "Max", "Mediana", "Dolny kwartyl", "Górny kwartyl"))
+}
+
 ```
 
-#Projekt zaliczeniowy
-Algorytmy: PRS, MS
-Funkcje: Alpine01, Rosenbrock
+# Projekt zaliczeniowy
+### Algorytmy: PRS, MS
+### Funkcje: Alpine01, Rosenbrock
+### Autorzy: Aleksander Grzybek, Wiktor Kostka
 
-#Wyniki
+# Wyniki
 
 ## Funkcja Alpine, 2D
-### MS
-* Średnia: `r mean(ams2)`
-* Wartość najmniejsza: `r min(ams2)`
-* Wartość największa: `r max(ams2)`
-* Mediana: `r median(ams2)`
-* Dolny kwartyl: `r quantile(ams2, 0.25)`
-* Górny kwartyl: `r quantile(ams2, 0.75)`
-
-### PRS
-* Średnia: `r mean(aprs2)`
-* Wartość najmniejsza: `r min(aprs2)`
-* Wartość największa: `r max(aprs2)`
-* Mediana: `r median(aprs2)`
-* Dolny kwartyl: `r quantile(aprs2, 0.25)`
-* Górny kwartyl: `r quantile(aprs2, 0.75)`
+```{r echo=FALSE}
+createTable(ams2,aprs2)
+```
 
 ```{r echo=FALSE}
 hist(ams2, main="Funkcja Alpine 2D, MS", 
@@ -56,21 +61,10 @@ hist(aprs2, main="Funkcja Alpine 2D, PRS",
 ```
 
 ## Funkcja Alpine, 10D
-### MS
-* Średnia: `r mean(ams10)`
-* Wartość najmniejsza: `r min(ams10)`
-* Wartość największa: `r max(ams10)`
-* Mediana: `r median(ams10)`
-* Dolny kwartyl: `r quantile(ams10, 0.25)`
-* Górny kwartyl: `r quantile(ams10, 0.75)`
+```{r echo=FALSE}
+createTable(ams10,aprs10)
+```
 
-### PRS
-* Średnia: `r mean(aprs10)`
-* Wartość najmniejsza: `r min(aprs10)`
-* Wartość największa: `r max(aprs10)`
-* Mediana: `r median(aprs10)`
-* Dolny kwartyl: `r quantile(aprs10, 0.25)`
-* Górny kwartyl: `r quantile(aprs10, 0.75)`
 
 ```{r echo=FALSE}
 hist(ams10, main="Funkcja Alpine 10D, MS", 
