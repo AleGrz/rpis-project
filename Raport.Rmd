@@ -48,14 +48,14 @@ createTable(ams2,aprs2)
 ```{r echo=FALSE}
 hist(ams2, main="Funkcja Alpine01 2D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     xlim = c(0,11e-7)
+     xlim = c(0,11e-7), ylim = c(0, 20)
      )
 ```
 
 ```{r echo=FALSE}
 hist(aprs2, main="Funkcja Alpine01 2D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     xlim = c(0,0.06)
+     xlim = c(0,0.06), ylim = (0, 50)
      )
 ```
 
@@ -78,14 +78,14 @@ createTable(ams10,aprs10)
 ```{r echo=FALSE}
 hist(ams10, main="Funkcja Alpine01 10D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20)
+     ylim = c(0, 100)
      )
 ```
 
 ```{r echo=FALSE}
 hist(aprs10, main="Funkcja Alpine01 10D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30)
+     xlim = c(4, 10), ylim = c(0,30)
      )
 ```
 
@@ -114,7 +114,7 @@ hist(ams20, main="Funkcja Alpine01 20D, MS",
 ```{r echo=FALSE}
 hist(aprs20, main="Funkcja Alpine01 20D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,50), xlim = c(17,29)
+     ylim = c(0,35), xlim = c(18,28)
      )
 ```
 
@@ -136,12 +136,14 @@ createTable(pms2,pprs2)
 ```{r echo=FALSE}
 hist(pms2, main="Funkcja Rosenbrocka 2D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE
+     xlim = c(0, 6e-09), ylim = c(0, 90)
      )
 ```
 
 ```{r echo=FALSE}
 hist(pprs2, main="Funkcja Rosenbrocka 2D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE
+     xlim = c(0, 7), ylim = c(0, 65)
      )
 ```
 
@@ -163,12 +165,14 @@ createTable(pms10,pprs10)
 ```{r echo=FALSE}
 hist(pms10, main="Funkcja Rosenbrocka 10D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0, 30)
      )
 ```
 
 ```{r echo=FALSE}
 hist(pprs10, main="Funkcja Rosenbrocka 10D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     xlim = c(0, 6e+06), ylim = c(0, 30)
      )
 ```
 
@@ -190,12 +194,14 @@ createTable(pms20,pprs20)
 ```{r echo=FALSE}
 hist(pms20, main="Funkcja Rosenbrocka 20D, MS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     xlim = c(0, 0.20), ylim = c(0, 100)
      )
 ```
 
 ```{r echo=FALSE}
 hist(pprs20, main="Funkcja Rosenbrocka 20D, PRS", 
      xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     xlim = c(0, 7e+07), ylim = (0, 35)
      )
 ```
 
